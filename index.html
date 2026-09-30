@@ -1,16 +1,136 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ma première page HTML</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Premier site vibecodé · Projet d'apprentissage généré par IA</title>
+  <meta name="description" content="Un site statique généré par une IA dans le cadre d'un cours de technologies web : ce qui a été fait, comment, et ce que j'en ai appris.">
+  <meta property="og:title" content="Premier site vibecodé">
+  <meta property="og:description" content="Un site statique généré par une IA, créé pour apprendre HTML, CSS, Git et le déploiement.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#2F4BFF">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232F4BFF'/%3E%3Cpath d='M11 10l-5 6 5 6M21 10l5 6-5 6' stroke='white' stroke-width='2.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    /* Applique le thème mémorisé avant l'affichage pour éviter un flash */
+    try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
 </head>
-
 <body>
-    <h1>Bienvenue sur ma page</h1>
-    <p>Salut comment ça va ?</p>
-</body>
+  <a class="skip" href="#contenu">Aller au contenu</a>
 
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="#top" aria-label="Premier site vibecodé, retour en haut">
+        <span class="logo" aria-hidden="true">&lt;/&gt;</span> Premier site vibecodé
+      </a>
+      <nav aria-label="Navigation principale">
+        <a href="#projet">Le projet</a>
+        <a href="#methode">Méthode</a>
+        <a href="#appris">Appris</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <button id="theme" class="icon-btn" type="button" aria-label="Changer de thème">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.5-.1-1-.2-1.4A5.5 5.5 0 0 1 12.4 3.2 9 9 0 0 0 12 3z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <section class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="badge">Ce site a été généré par une IA</p>
+          <h1>Une IA a écrit le code, un étudiant a appris à le comprendre.</h1>
+          <p class="lead">Ce site est mon premier projet de technologies web. Il sert à apprendre le HTML, le CSS, Git et la mise en ligne, avec Claude comme assistant de code.</p>
+          <div class="actions">
+            <a class="btn primary" href="#methode">Voir comment il a été créé</a>
+            <a class="btn" href="https://github.com/beckmanlaurent/AI-project" rel="noopener">Code source sur GitHub</a>
+          </div>
+        </div>
+
+        <figure class="demo" aria-label="Exemple d'échange avec l'IA">
+          <div class="demo-bar"><span></span><span></span><span></span></div>
+          <div class="demo-body">
+            <p class="demo-label">Ma demande</p>
+            <p class="prompt"><span id="typed">Fais-moi un site statique en HTML et CSS qui explique qu'il a été généré par IA.</span><i class="caret" aria-hidden="true"></i></p>
+            <p class="demo-label">Ce que l'IA a produit</p>
+<pre><code>&lt;h1&gt;Une IA a écrit le code…&lt;/h1&gt;
+&lt;p class="lead"&gt;
+  Ce site est mon premier projet…
+&lt;/p&gt;</code></pre>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" id="projet">
+      <div class="wrap split">
+        <h2>Le projet</h2>
+        <div class="prose">
+          <p>Ce site est un exercice réalisé dans le cadre de mon cours de technologies web (IFOSUP, bloc 1). L'objectif n'est pas de produire un site parfait, mais de comprendre toute la chaîne : écrire des pages, les versionner avec Git, les envoyer sur GitHub, puis les publier.</p>
+          <p>Le code a été généré par une intelligence artificielle à partir de mes instructions. Je l'ai ensuite lu, testé et publié moi-même. Je le dis clairement ici : ce n'est pas du code écrit à la main.</p>
+          <dl class="facts">
+            <div><dt>Type</dt><dd>Site statique, sans serveur ni base de données</dd></div>
+            <div><dt>Technologies</dt><dd>HTML, CSS, un peu de JavaScript</dd></div>
+            <div><dt>Hébergement prévu</dt><dd>Vercel</dd></div>
+            <div><dt>Contexte</dt><dd>Apprentissage, projet scolaire</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="methode">
+      <div class="wrap split">
+        <h2>Comment il a été créé</h2>
+        <ol class="steps">
+          <li><h3>Décrire ce que je veux</h3><p>J'écris une demande claire : le sujet, les technologies autorisées, le niveau de qualité attendu.</p></li>
+          <li><h3>Laisser l'IA générer le code</h3><p>Claude produit les fichiers <code>index.html</code>, <code>style.css</code> et <code>script.js</code>.</p></li>
+          <li><h3>Relire et tester</h3><p>J'ouvre la page dans mon navigateur et je vérifie que tout fonctionne, y compris sur téléphone.</p></li>
+          <li><h3>Versionner avec Git</h3><p>Je crée un commit, puis j'envoie le projet sur GitHub avec <code>git push</code>.</p></li>
+          <li><h3>Publier avec Vercel</h3><p>Vercel se connecte au dépôt GitHub et met le site en ligne à chaque mise à jour.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="appris">
+      <div class="wrap split">
+        <h2>Ce que j'ai déjà appris</h2>
+        <div class="prose">
+          <p>Envoyer le projet sur GitHub ne s'est pas fait du premier coup. Chaque erreur m'a appris quelque chose.</p>
+          <ul class="lessons">
+            <li><strong>Erreur 403.</strong> Windows avait gardé les identifiants d'un ancien compte GitHub. Le droit de pousser dépend du compte connecté.</li>
+            <li><strong>« src refspec main does not match any ».</strong> Le dossier était vide : sans fichier, il n'y a pas de commit à envoyer.</li>
+            <li><strong>Refus « fast-forward ».</strong> Le dépôt GitHub contenait déjà un commit (le README). Il faut le récupérer avec <code>git pull</code> avant de pousser.</li>
+            <li><strong>Auteur des commits.</strong> Le nom affiché vient de <code>git config user.name</code>, pas du compte connecté.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="faq">
+      <div class="wrap split">
+        <h2>Questions fréquentes</h2>
+        <div class="faq">
+          <details><summary>Ce site est-il vraiment fait par une IA ?</summary><p>Oui. Le code a été généré par Claude, un assistant d'Anthropic. Je l'ai relu, testé et publié.</p></details>
+          <details><summary>Pourquoi utiliser une IA pour apprendre ?</summary><p>Elle produit une base fonctionnelle que je peux lire, modifier et casser pour comprendre. Le but est de m'approprier le code, pas de le copier sans réfléchir.</p></details>
+          <details><summary>Le site collecte-t-il des données ?</summary><p>Non. Il n'y a ni formulaire, ni cookie, ni outil de statistiques. Seul le choix du thème clair ou sombre est mémorisé dans ton navigateur.</p></details>
+          <details><summary>Puis-je réutiliser le code ?</summary><p>Oui, à titre d'exemple. Le dépôt est public sur GitHub.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap foot">
+      <p>Projet d'apprentissage · IFOSUP, technoWeb · Contenu et code générés par IA (Claude), relus par Laurent Beckman.</p>
+      <p><a href="https://github.com/beckmanlaurent/AI-project" rel="noopener">GitHub</a> · <span id="year">2026</span></p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
 </html>
