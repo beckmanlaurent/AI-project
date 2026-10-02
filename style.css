@@ -1,134 +1,331 @@
-/* ---------- Thème ---------- */
+/* ==========================================================
+   Labo de lumière : feuille de style (version finale)
+   Thème sombre, parce que la lumière ressort mieux sur fond nuit.
+   ========================================================== */
+
+/* 1. Variables : on change une valeur ici, elle change partout */
 :root {
-  --bg: #F4F6FA;
-  --alt: #EAEEF7;
-  --surface: #FFFFFF;
-  --ink: #141A33;
-  --muted: #4F5776;
-  --line: #D9DFEE;
-  --accent: #2F4BFF;
-  --accent-ink: #FFFFFF;
-  --code-bg: #141A33;
-  --code-ink: #DDE3FF;
-  --radius: 14px;
-  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --font-body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
-  color-scheme: light;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #0E1226; --alt: #131832; --surface: #171D3B; --ink: #EEF1FF; --muted: #A6AECB;
-    --line: #283058; --accent: #93A3FF; --accent-ink: #0E1226; --code-bg: #0A0D1E; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #0E1226; --alt: #131832; --surface: #171D3B; --ink: #EEF1FF; --muted: #A6AECB;
-  --line: #283058; --accent: #93A3FF; --accent-ink: #0E1226; --code-bg: #0A0D1E; color-scheme: dark;
+  --fond: #0b0f1a;
+  --texte: #e8ecf5;
+  --texte-doux: #98a2bb;
+  --accent: #ffd98a;                       /* teinte d'une ampoule : sélection, curseurs */
+  --danger: #ff9a8a;
+  --verre-ui: rgba(14, 20, 36, 0.82);      /* fond translucide des barres */
+  --trait: rgba(255, 255, 255, 0.16);
+  --marge: clamp(14px, 3vw, 28px);
+  --hauteur-barre: 64px;
+  --police: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color-scheme: dark;
 }
 
-/* ---------- Base ---------- */
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+/* 2. Remise à plat */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* L'attribut hidden doit toujours gagner, même contre un "display: grid" plus bas */
+[hidden] {
+  display: none !important;
+}
+
+html, body {
+  height: 100%;
+}
+
 body {
-  margin: 0; background: var(--bg); color: var(--ink);
-  font: 400 1.0625rem/1.65 var(--font-body);
-  -webkit-font-smoothing: antialiased;
-}
-h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; margin: 0; letter-spacing: -0.02em; }
-p { margin: 0 0 1rem; }
-a { color: var(--accent); text-underline-offset: 3px; }
-code { font-family: var(--font-mono); font-size: .9em; background: var(--alt); padding: .1em .4em; border-radius: 6px; }
-:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-.wrap { width: min(100% - 2.5rem, 1080px); margin-inline: auto; }
-.skip { position: absolute; left: -999px; top: 0; background: var(--accent); color: var(--accent-ink); padding: .6rem 1rem; z-index: 20; }
-.skip:focus { left: 1rem; top: 1rem; }
-
-/* ---------- En-tête ---------- */
-.site-header { position: sticky; top: 0; z-index: 10; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
-.bar { display: flex; align-items: center; gap: 1.5rem; min-height: 4rem; }
-.brand { display: flex; align-items: center; gap: .6rem; font: 800 1.05rem var(--font-display); color: var(--ink); text-decoration: none; margin-right: auto; }
-.logo { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 9px; background: var(--accent); color: var(--accent-ink); font: 500 .8rem var(--font-mono); }
-nav { display: flex; gap: 1.5rem; }
-nav a { color: var(--muted); text-decoration: none; font-weight: 500; font-size: .98rem; }
-nav a:hover { color: var(--ink); text-decoration: underline; }
-.icon-btn { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); cursor: pointer; }
-.icon-btn:hover { border-color: var(--accent); }
-
-/* ---------- Hero ---------- */
-.hero { padding: clamp(3rem, 8vw, 6rem) 0; }
-.hero-grid { display: grid; gap: 3rem; grid-template-columns: 1.15fr 1fr; align-items: center; }
-.badge { display: inline-block; margin-bottom: 1.25rem; padding: .35rem .85rem; border: 1px solid var(--accent); border-radius: 999px; color: var(--accent); font-weight: 600; font-size: .92rem; }
-h1 { font-size: clamp(2.3rem, 5.2vw, 3.9rem); font-weight: 800; text-wrap: balance; }
-.lead { margin: 1.5rem 0 2rem; max-width: 34rem; font-size: 1.2rem; color: var(--muted); }
-.actions { display: flex; flex-wrap: wrap; gap: .75rem; }
-.btn { display: inline-flex; align-items: center; min-height: 2.9rem; padding: 0 1.25rem; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); font-weight: 600; text-decoration: none; transition: border-color .15s, transform .15s; }
-.btn:hover { border-color: var(--accent); }
-.btn:active { transform: translateY(1px); }
-.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-.btn.primary:hover { filter: brightness(1.08); }
-
-/* Démo prompt → code : l'élément mémorable de la page */
-.demo { margin: 0; border-radius: var(--radius); background: var(--code-bg); color: var(--code-ink); overflow: hidden; box-shadow: 0 24px 60px -24px rgba(20, 26, 51, .5); }
-.demo-bar { display: flex; gap: .4rem; padding: .85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.1); }
-.demo-bar span { width: .7rem; height: .7rem; border-radius: 50%; background: rgba(255,255,255,.22); }
-.demo-body { padding: 1.25rem 1.4rem 1.5rem; font-family: var(--font-mono); font-size: .9rem; line-height: 1.6; }
-.demo-label { margin: 0 0 .4rem; color: #93A3FF; font-family: var(--font-body); font-size: .85rem; font-weight: 600; }
-.prompt { margin-bottom: 1.5rem; min-height: 4.8em; }
-.caret { display: inline-block; width: .5em; height: 1.05em; margin-left: 2px; vertical-align: text-bottom; background: #93A3FF; animation: blink 1s steps(2) infinite; }
-.demo pre { margin: 0; overflow-x: auto; }
-.demo code { background: none; padding: 0; font-size: inherit; color: inherit; }
-@keyframes blink { 50% { opacity: 0; } }
-
-/* ---------- Sections ---------- */
-.section { padding: clamp(3rem, 7vw, 5.5rem) 0; }
-.section.alt { background: var(--alt); }
-.split { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem 4rem; align-items: start; }
-h2 { font-size: clamp(1.7rem, 3vw, 2.2rem); font-weight: 800; position: sticky; top: 5.5rem; }
-.prose { max-width: 40rem; }
-.prose p { color: var(--muted); }
-
-.facts { margin: 2rem 0 0; border-top: 1px solid var(--line); }
-.facts div { display: grid; grid-template-columns: 10rem 1fr; gap: 1rem; padding: .9rem 0; border-bottom: 1px solid var(--line); }
-.facts dt { font-weight: 600; }
-.facts dd { margin: 0; color: var(--muted); }
-
-.steps { margin: 0; padding: 0; list-style: none; counter-reset: step; max-width: 40rem; }
-.steps li { position: relative; padding: 0 0 2rem 3.5rem; counter-increment: step; }
-.steps li::before { content: counter(step); position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 2.4rem; height: 2.4rem; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 800 1rem var(--font-display); }
-.steps li:not(:last-child)::after { content: ""; position: absolute; left: 1.15rem; top: 2.8rem; bottom: .4rem; width: 2px; background: var(--line); }
-.steps h3 { font-size: 1.25rem; margin: .3rem 0 .4rem; }
-.steps p { margin: 0; color: var(--muted); }
-
-.lessons { margin: 1.5rem 0 0; padding: 0; list-style: none; }
-.lessons li { padding: 1rem 0; border-top: 1px solid var(--line); color: var(--muted); }
-.lessons li:last-child { border-bottom: 1px solid var(--line); }
-.lessons strong { display: block; color: var(--ink); }
-
-.faq { max-width: 40rem; border-top: 1px solid var(--line); }
-.faq details { border-bottom: 1px solid var(--line); }
-.faq summary { display: flex; justify-content: space-between; gap: 1rem; padding: 1.1rem 0; font-weight: 600; cursor: pointer; list-style: none; }
-.faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; font-size: 1.4rem; line-height: 1; color: var(--accent); transition: transform .2s; }
-.faq details[open] summary::after { transform: rotate(45deg); }
-.faq details p { margin: 0 0 1.2rem; color: var(--muted); }
-
-/* ---------- Pied de page ---------- */
-.site-footer { padding: 2.5rem 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .95rem; }
-.foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
-.foot p { margin: 0; max-width: 40rem; }
-
-/* ---------- Responsive ---------- */
-@media (max-width: 860px) {
-  .hero-grid, .split { grid-template-columns: 1fr; }
-  h2 { position: static; }
-  nav { display: none; }
-  .facts div { grid-template-columns: 1fr; gap: .1rem; }
+  margin: 0;
+  overflow: hidden;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--police);
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
 }
 
-/* ---------- Mouvement réduit ---------- */
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .caret { animation: none; }
-  * { transition: none !important; }
+/* 3. La scène */
+.scene {
+  position: fixed;
+  inset: 0;
+}
+
+#canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;           /* glisser un doigt sur la scène ne fait pas défiler la page */
+}
+
+/* 4. En-tête, par-dessus le canvas */
+.entete {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  max-width: 36rem;
+  padding: calc(var(--marge) + env(safe-area-inset-top, 0px))
+           var(--marge)
+           0
+           calc(var(--marge) + env(safe-area-inset-left, 0px));
+  pointer-events: none;         /* les clics traversent l'en-tête... */
+  text-shadow: 0 0 8px var(--fond), 0 0 2px var(--fond);
+}
+
+.entete h1 {
+  margin: 0;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+}
+
+.aide {
+  margin: 0.4rem 0 0;
+  max-width: 38ch;
+  font-size: 0.95rem;
+  color: var(--texte-doux);
+}
+
+/* ... sauf pour le bloc repliable, qui doit rester cliquable */
+.apropos {
+  margin-top: 0.5rem;
+  max-width: 38ch;
+  font-size: 0.85rem;
+  color: var(--texte-doux);
+  pointer-events: auto;
+}
+
+.apropos summary {
+  display: inline-block;
+  cursor: pointer;
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}
+
+.apropos-texte {
+  margin-top: 0.4rem;
+  padding: 0.2rem 0.8rem;
+  background: var(--verre-ui);
+  border: 1px solid var(--trait);
+  border-radius: 10px;
+  text-shadow: none;
+}
+
+/* 5. Barre d'outils, en bas au centre */
+.barre {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--marge) + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  gap: 0.5rem;
+  max-width: calc(100% - 2 * var(--marge));
+  height: var(--hauteur-barre);
+  padding: 0.5rem;
+  overflow-x: auto;             /* sur petit écran, la barre défile au lieu de passer à la ligne */
+  background: var(--verre-ui);
+  border: 1px solid var(--trait);
+  border-radius: 14px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.outil {
+  flex: none;
+  min-height: 44px;             /* taille confortable pour un doigt */
+  padding: 0.5rem 0.9rem;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--texte);
+  background: transparent;
+  border: 1px solid var(--trait);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.outil:hover {
+  border-color: var(--accent);
+}
+
+.outil-discret {
+  color: var(--texte-doux);
+}
+
+.outil-danger {
+  min-height: 36px;
+  color: var(--danger);
+  border-color: rgba(255, 154, 138, 0.45);
+}
+
+.outil-danger:hover {
+  border-color: var(--danger);
+}
+
+/* 6. Panneau de réglages : à droite sur ordinateur */
+.panneau {
+  position: fixed;
+  z-index: 2;
+  top: calc(var(--marge) + env(safe-area-inset-top, 0px));
+  right: calc(var(--marge) + env(safe-area-inset-right, 0px));
+  width: min(300px, calc(100% - 2 * var(--marge)));
+  max-height: calc(100% - var(--hauteur-barre) - 4 * var(--marge));
+  padding: 0.9rem 1rem 1rem;
+  overflow-y: auto;
+  background: var(--verre-ui);
+  border: 1px solid var(--trait);
+  border-radius: 14px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.panneau-tete {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.panneau h2 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.note {
+  margin: 0.5rem 0 0.25rem;
+  font-size: 0.85rem;
+  color: var(--texte-doux);
+}
+
+.groupe {
+  margin-top: 0.5rem;
+}
+
+.case {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 36px;
+  font-size: 0.9rem;
+}
+
+.case input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
+/* Un réglage : le texte à gauche, la valeur à droite, le curseur dessous */
+.reglage {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  margin-top: 0.4rem;
+  font-size: 0.9rem;
+}
+
+.reglage output {
+  font-variant-numeric: tabular-nums;
+  color: var(--texte-doux);
+}
+
+.reglage input[type="range"] {
+  grid-column: 1 / -1;
+}
+
+/* 7. Curseurs : on remplace l'apparence par défaut du navigateur */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 32px;                 /* zone de toucher confortable */
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.24);
+}
+
+input[type="range"]::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.24);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  margin-top: -8px;             /* centre la boule sur le rail : (4 − 20) / 2 */
+  border: 2px solid var(--fond);
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+input[type="range"]::-moz-range-thumb {
+  box-sizing: border-box;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--fond);
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* Le curseur de couleur pure affiche le spectre */
+#reg-lambda::-webkit-slider-runnable-track,
+#reg-filtre::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, #8a2be2, #2f3cff, #00c8ff, #00e060, #f2e600, #ff9a00, #ff2a00);
+}
+
+#reg-lambda::-moz-range-track,
+#reg-filtre::-moz-range-track {
+  background: linear-gradient(to right, #8a2be2, #2f3cff, #00c8ff, #00e060, #f2e600, #ff9a00, #ff2a00);
+}
+
+/* Liste déroulante (forme du verre) */
+.reglage select {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 40px;
+  padding: 0.4rem 0.5rem;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--texte);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--trait);
+  border-radius: 8px;
+}
+
+/* 8. Accessibilité : un contour visible quand on navigue au clavier */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* 9. Message affiché si JavaScript est désactivé */
+.sans-js {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: var(--marge);
+  text-align: center;
+}
+
+/* 10. Téléphone : le panneau passe en bas, juste au-dessus de la barre d'outils */
+@media (max-width: 640px) {
+  .panneau {
+    top: auto;
+    right: calc(var(--marge) + env(safe-area-inset-right, 0px));
+    left: calc(var(--marge) + env(safe-area-inset-left, 0px));
+    bottom: calc(var(--marge) + env(safe-area-inset-bottom, 0px) + var(--hauteur-barre) + 0.5rem);
+    width: auto;
+    max-height: 42%;
+  }
 }
